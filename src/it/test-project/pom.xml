@@ -48,6 +48,30 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<analyzer>io.github.shitikanth.dependencyanalyzer.StarterAwareDependencyAnalyzer</analyzer>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>io.github.shitikanth</groupId>
+						<artifactId>starter-aware-dependency-analyzer</artifactId>
+						<version>1.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>analyze-dependencies</id>
+						<goals>
+							<goal>analyze</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 

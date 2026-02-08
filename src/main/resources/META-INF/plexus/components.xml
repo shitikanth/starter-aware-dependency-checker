@@ -1,0 +1,20 @@
+<component-set>
+  <components>
+    <component>
+      <role>org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer</role>
+      <role-hint>io.github.shitikanth.dependencyanalyzer.StarterAwareDependencyAnalyzer</role-hint>
+      <implementation>io.github.shitikanth.dependencyanalyzer.StarterAwareDependencyAnalyzer</implementation>
+      <requirements>
+        <requirement>
+          <role>org.apache.maven.shared.dependency.graph.DependencyGraphBuilder</role>
+          <field-name>dependencyGraphBuilder</field-name>
+        </requirement>
+        <requirement>
+          <role>org.eclipse.aether.RepositorySystem</role>
+          <field-name>repositorySystem</field-name>
+        </requirement>
+      </requirements>
+      <isolated-realm>false</isolated-realm>
+    </component>
+  </components>
+</component-set>

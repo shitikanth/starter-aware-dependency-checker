@@ -1,30 +1,30 @@
 # Full Project Plan
 
-## Phase 1: Setup Integration Test (Current Focus)
+## Phase 1: Setup Integration Test
 *   **Goal:** Create a simple Spring Boot project as an integration test to demonstrate the problem (false positives from `mvn dependency:analyze`) before implementing the solution.
 *   **Tasks:**
-    1.  [completed] Generate a simple Spring Boot project inside `src/it/test-project` (TO BE DONE BY USER - DO NOT DO THIS YOURSELF! JUST PAUSE AND WAIT FOR CONFIRMATION.).
-    2.  [completed] Modify the main `pom.xml` to include `maven-invoker-plugin` to run `mvn dependency:analyze` on the `test-project` during the `integration-test` phase.
-    3.  [completed] Add an assertion to the integration test that reads the logs to validate that no false positives are reported.
-    4.  [completed] Run the integration test (`mvn clean verify`) and confirm that the test is failing.
+    1.  [completed] Generate a simple Spring Boot project inside `src/it/test-project`.
+    2.  [completed] Modify the main `pom.xml` to include `maven-invoker-plugin` to run `mvn dependency:analyze` on the `test-project`.
+    3.  [completed] Add an assertion script (`verify.groovy`) to the integration test to check for the presence of false positives.
+    4.  [completed] Run the integration test (`mvn clean verify`) and confirm that the test fails as expected.
 
-## Phase 2: Empty StarterAwareDependencyAnalyzer + linking with Integration Test
-*   **Goal:** Create an empty `StarterAwareDependencyAnalyzer` class and link it with the integration test project to ensure that the analyzer is properly invoked during the build.
+## Phase 2: Create and Link Empty Analyzer
+*   **Goal:** Create an empty `StarterAwareDependencyAnalyzer` class, wire it into the build process, and confirm it's invoked by the integration test.
 *   **Tasks:**
-    1.  [pending] Create an empty `StarterAwareDependencyAnalyzer` class that simply extends `DefaultProjectDependencyAnalyzer`
-    2.  [pending] Configure the test setup to use this analyzer instead of the default one.
-    3.  [pending] Execute the integration test (`mvn clean verify`) and confirm that the analyzer is invoked. The tests should of course still fail.
+    1.  [completed] Add necessary Maven API dependencies (`maven-dependency-analyzer`, `maven-core`) with `'provided'` scope to the main `pom.xml`.
+    2.  [completed] Create an empty `StarterAwareDependencyAnalyzer` class that extends `DefaultProjectDependencyAnalyzer`.
+    3.  [completed] Add `components.xml` to declare `StarterAwareDependencyAnalyzer` as a Plexus component.
+    4.  [completed] Configure the `maven-dependency-plugin` in the `test-project`'s `pom.xml` to use the custom analyzer.
+    5.  [completed] Execute the integration test and confirm that the custom analyzer is invoked.
 
-## Phase 3: Implement StarterAwareDependencyAnalyzer
+## Phase 3: Implement Custom Analyzer Logic
 *   **Goal:** Develop the `StarterAwareDependencyAnalyzer` to correctly identify and filter starter-related false positives.
 *   **Tasks:**
-    1.  [pending] Add necessary Maven API dependencies (e.g., `maven-dependency-analyzer`, `maven-core`, `maven-project`) with `'provided'` scope to the main `pom.xml`.
-    2.  [pending] Find stable versions for these Maven API dependencies.
-    3.  [pending] Implement `io.github.shitikanth.dependencyanalyzer.StarterAwareDependencyAnalyzer`.
+    1.  [completed] Implement the `analyze` method in `io.github.shitikanth.dependencyanalyzer.StarterAwareDependencyAnalyzer` to filter false positives.
 
-## Phase 4: Verify and Refine
+## Phase 4: Verify and Finalize
 *   **Goal:** Run the integration tests and confirm that the custom analyzer eliminates the false positives.
 *   **Tasks:**
-    1.  [pending] Execute the integration test (`mvn clean verify`).
-    2.  [pending] Parse the output of `mvn dependency:analyze` from the `test-project` to ensure no false positives are reported.
-    3.  [pending] Iterate and refine the `StarterAwareDependencyAnalyzer` logic or `pom.xml` configurations until all requirements are met.
+    1.  [completed] Run the integration test (`mvn verify`) and confirm that it passes.
+    2.  [completed] Iterate and refine the analyzer logic or configuration until all requirements are met.
+    3.  [completed] Commit the final changes.

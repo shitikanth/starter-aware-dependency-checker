@@ -25,6 +25,9 @@
     <!-- dependency versions -->
     <junit-jupiter.version>5.11.2</junit-jupiter.version>
     <maven-invoker-plugin.version>3.6.0</maven-invoker-plugin.version>
+    <maven-dependency-analyzer.version>1.15.0</maven-dependency-analyzer.version>
+    <maven-core.version>3.9.12</maven-core.version>
+    <maven-dependency-tree.version>3.3.0</maven-dependency-tree.version>
   </properties>
 
   <dependencies>
@@ -33,6 +36,24 @@
       <artifactId>junit-jupiter</artifactId>
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-dependency-analyzer</artifactId>
+      <version>${maven-dependency-analyzer.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>${maven-core.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-dependency-tree</artifactId>
+      <version>${maven-dependency-tree.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
